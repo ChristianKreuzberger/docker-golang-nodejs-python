@@ -1,0 +1,11 @@
+FROM denoland/deno:distroless-1.28.3
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY . .
+
+RUN ["deno", "cache", "server.js"]
+
+CMD [ "run", "--allow-net", "--allow-read", "--allow-env", "server.js" ]

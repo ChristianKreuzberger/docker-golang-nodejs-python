@@ -1,0 +1,12 @@
+FROM denoland/deno:1.28.3
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY . .
+
+# cache server.js (includes dependencies like express)
+RUN deno cache server.js
+
+CMD [ "run", "--allow-net", "--allow-read", "--allow-env", "server.js" ]
